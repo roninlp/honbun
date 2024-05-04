@@ -5,6 +5,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { api } from "@/lib/api";
 import { useEffect, useState } from "react";
 
 function App() {
@@ -12,7 +13,7 @@ function App() {
 
   useEffect(() => {
     async function fetchTotalSpent() {
-      const res = await fetch("/api/expenses/total-spent");
+      const res = await api.expenses["total-spent"].$get();
       const data = await res.json();
       setTotalSpent(data.totalSpent);
     }
