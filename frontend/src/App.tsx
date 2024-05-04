@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import { useState } from "react";
 
 function App() {
@@ -5,12 +6,10 @@ function App() {
 
   return (
     <>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p></p>
+      <div className="flex max-w-md flex-col gap-2 bg-background">
+        <Button onClick={() => setCount((count) => count + 1)}>up</Button>
+        <Button onClick={() => setCount((count) => count - 1)}>down</Button>
+        <p>{count}</p>
       </div>
     </>
   );
