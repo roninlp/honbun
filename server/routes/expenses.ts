@@ -10,7 +10,7 @@ const expenseSchema = z.object({
 
 type Expense = z.infer<typeof expenseSchema>;
 
-const createPostSchema = expenseSchema.omit({ id: true });
+export const createExpenseSchema = expenseSchema.omit({ id: true });
 
 const fakeExpenses: Expense[] = [
   {
@@ -34,7 +34,7 @@ export const expensesRoute = new Hono()
   .get("/", (c) => {
     return c.json({ expenses: fakeExpenses });
   })
-  .post("/", zValidator("json", createPostSchema), async (c) => {
+  .post("/", zValidator("json", createExpenseSchema), async (c) => {
     const expense = await c.req.valid("json");
     fakeExpenses.push({ ...expense, id: fakeExpenses.length + 1 });
     c.status(201);
